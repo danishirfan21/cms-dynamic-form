@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em;
+}
+
+.container {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.content-type-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.content-type-dropdown {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid light grey;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.content-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.content-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.content-author {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.content-author-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.body-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.blog-post-body {
+  width: 100%;
+  height: 200px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.tags-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.tags-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.product-name-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.product-name-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.price-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.price-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.category-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.category-dropdown {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.event-date-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.event-date-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.location-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.location-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.description-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.description-textarea {
+  width: 100%;
+  height: 100px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.add-field-btn {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(247, 242, 242);
+  background: rgb(60, 231, 60);
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 5px;
+  display: inline-flex;
+}
+
+.add-field-btn:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  margin-right: 0.25em;
+  font-size: 1.125em;
+}
+
+.remove-field-btn {
+  font-size: 14px;
+  font-weight: bold;
+  color: whitesmoke;
+  background: red;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 5px;
+  display: inline-flex;
+}
+
+.remove-field-btn:hover {
+  text-decoration: underline;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #014d9e;
+  text-decoration: underline;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.category-section {
+  width: 100%;
+  display: block;
+}
+
+.error-message {
+  color: red;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 20px 0;
+}
