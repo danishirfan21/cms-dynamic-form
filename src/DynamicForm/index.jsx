@@ -16,12 +16,20 @@ export default function DynamicForm() {
     watch,
     formState: { errors },
     control,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      blogPosts: [{ blogPostBody: "", blogPostTags: "" }],
+      productListings: [{ productName: "", price: "", category: "" }],
+      events: [{ eventDate: "", location: "", description: "" }],
+    },
+  });
 
-  const { fields, append, remove } = useFieldArray({
-    name: "content",
+  const blogPostFields = useFieldArray({ name: "blogPosts", control });
+  const productListingFields = useFieldArray({
+    name: "productListings",
     control,
   });
+  const eventFields = useFieldArray({ name: "events", control });
 
   function onSubmit(data) {
     console.log("=========data", data);
@@ -99,7 +107,7 @@ export default function DynamicForm() {
         {(watch("content-type") === "Blog Post" ||
           watch("content-type") === undefined) && (
           <>
-            {fields.map((field, index) => (
+            {blogPostFields.fields.map((field, index) => (
               <Fragment key={field.id}>
                 <div>
                   <label
@@ -118,12 +126,12 @@ export default function DynamicForm() {
                       ></textarea>
                     )}
                     control={control}
-                    name={`content.${index}.blogPostBody`}
+                    name={`blogPosts.${index}.blogPostBody`}
                   />
 
-                  {errors?.content?.[index]?.blogPostBody && (
+                  {errors?.blogPosts?.[index]?.blogPostBody && (
                     <span className="error-message">
-                      {errors?.content?.[index]?.blogPostBody?.message}
+                      {errors?.blogPosts?.[index]?.blogPostBody?.message}
                     </span>
                   )}
                 </div>
@@ -146,27 +154,34 @@ export default function DynamicForm() {
                       />
                     )}
                     control={control}
-                    name={`content.${index}.blogPostTags`}
+                    name={`blogPosts.${index}.blogPostTags`}
                   />
 
-                  {errors?.content?.[index]?.blogPostTags && (
+                  {errors?.blogPosts?.[index]?.blogPostTags && (
                     <span className="error-message">
-                      {errors?.content?.[index]?.blogPostTags?.message}
+                      {errors?.blogPosts?.[index]?.blogPostTags?.message}
                     </span>
                   )}
                 </div>
 
-                <button className="remove-field-btn">
-                  <span className="icon">
-                    <MdOutlineRemoveCircleOutline />
-                  </span>{" "}
-                  Remove Field
-                </button>
+                {blogPostFields.fields.length > 1 && (
+                  <button
+                    className="remove-field-btn"
+                    onClick={() => blogPostFields.remove(index)}
+                  >
+                    <span className="icon">
+                      <MdOutlineRemoveCircleOutline />
+                    </span>{" "}
+                    Remove Field
+                  </button>
+                )}
               </Fragment>
             ))}
             <button
               className="add-field-btn"
-              onClick={() => append({ blogPostBody: "", blogPostTags: "" })}
+              onClick={() =>
+                blogPostFields.append({ blogPostBody: "", blogPostTags: "" })
+              }
             >
               <span className="icon">
                 <IoMdAddCircleOutline />
@@ -178,7 +193,7 @@ export default function DynamicForm() {
 
         {watch("content-type") === "Product Listing" && (
           <>
-            {fields.map((field, index) => (
+            {productListingFields.fields.map((field, index) => (
               <Fragment key={field.id}>
                 <div className="section">
                   <div>
@@ -198,11 +213,11 @@ export default function DynamicForm() {
                         />
                       )}
                       control={control}
-                      name={`content.${index}.productName`}
+                      name={`productListings.${index}.productName`}
                     />
-                    {errors?.content?.[index]?.productName && (
+                    {errors?.productListings?.[index]?.productName && (
                       <span className="error-message">
-                        {errors?.content?.[index]?.productName?.message}
+                        {errors?.productListings?.[index]?.productName?.message}
                       </span>
                     )}
                   </div>
@@ -223,12 +238,12 @@ export default function DynamicForm() {
                           placeholder="Enter price"
                         />
                       )}
-                      name={`content.${index}.price`}
+                      name={`productListings.${index}.price`}
                       control={control}
                     />
-                    {errors?.content?.[index]?.price && (
+                    {errors?.productListings?.[index]?.price && (
                       <span className="error-message">
-                        {errors?.content?.[index]?.price?.message}
+                        {errors?.productListings?.[index]?.price?.message}
                       </span>
                     )}
                   </div>
@@ -273,21 +288,37 @@ export default function DynamicForm() {
                       </select>
                     )}
                     control={control}
-                    name={`content.${index}.category`}
+                    name={`productListings.${index}.category`}
                   />
-                  {errors?.content?.[index]?.category && (
+                  {errors?.productListings?.[index]?.category && (
                     <span className="error-message">
-                      {errors?.content?.[index]?.category?.message}
+                      {errors?.productListings?.[index]?.category?.message}
                     </span>
                   )}
                 </div>
+
+                {productListingFields.fields.length > 1 && (
+                  <button
+                    className="remove-field-btn"
+                    onClick={() => productListingFields.remove(index)}
+                  >
+                    <span className="icon">
+                      <MdOutlineRemoveCircleOutline />
+                    </span>{" "}
+                    Remove Field
+                  </button>
+                )}
               </Fragment>
             ))}
 
             <button
               className="add-field-btn"
               onClick={() =>
-                append({ productName: "", price: "", category: "" })
+                productListingFields.append({
+                  productName: "",
+                  price: "",
+                  category: "",
+                })
               }
             >
               <span className="icon">
@@ -300,7 +331,7 @@ export default function DynamicForm() {
 
         {watch("content-type") === "Event" && (
           <>
-            {fields.map((field, index) => (
+            {eventFields.fields.map((field, index) => (
               <Fragment key={field.id}>
                 <div className="section">
                   <div>
@@ -321,11 +352,11 @@ export default function DynamicForm() {
                         />
                       )}
                       control={control}
-                      name={`content.${index}.eventDate`}
+                      name={`eventFields.${index}.eventDate`}
                     />
-                    {errors?.content?.[index]?.eventDate && (
+                    {errors?.eventFields?.[index]?.eventDate && (
                       <span className="error-message">
-                        {errors?.content?.[index]?.eventDate?.message}
+                        {errors?.eventFields?.[index]?.eventDate?.message}
                       </span>
                     )}
                   </div>
@@ -346,11 +377,11 @@ export default function DynamicForm() {
                         />
                       )}
                       control={control}
-                      name={`content.${index}.location`}
+                      name={`eventFields.${index}.location`}
                     />
-                    {errors?.content?.[index]?.location && (
+                    {errors?.eventFields?.[index]?.location && (
                       <span className="error-message">
-                        {errors?.content?.[index]?.location?.message}
+                        {errors?.eventFields?.[index]?.location?.message}
                       </span>
                     )}
                   </div>
@@ -371,21 +402,37 @@ export default function DynamicForm() {
                       ></textarea>
                     )}
                     control={control}
-                    name={`content.${index}.description`}
+                    name={`eventFields.${index}.description`}
                   />
-                  {errors?.content?.[index]?.description && (
+                  {errors?.eventFields?.[index]?.description && (
                     <span className="error-message">
-                      {errors?.content?.[index]?.description?.message}
+                      {errors?.eventFields?.[index]?.description?.message}
                     </span>
                   )}
                 </div>
+
+                {eventFields.fields.length > 1 && (
+                  <button
+                    className="remove-field-btn"
+                    onClick={() => eventFields.remove(index)}
+                  >
+                    <span className="icon">
+                      <MdOutlineRemoveCircleOutline />
+                    </span>{" "}
+                    Remove Field
+                  </button>
+                )}
               </Fragment>
             ))}
 
             <button
               className="add-field-btn"
               onClick={() =>
-                append({ eventDate: "", location: "", description: "" })
+                eventFields.append({
+                  eventDate: "",
+                  location: "",
+                  description: "",
+                })
               }
             >
               <span className="icon">
